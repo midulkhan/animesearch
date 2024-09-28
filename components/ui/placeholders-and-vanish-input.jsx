@@ -11,33 +11,33 @@ export function PlaceholdersAndVanishInput({
 }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 
-  const intervalRef = useRef(null);
-  const startAnimation = () => {
-    intervalRef.current = setInterval(() => {
-      setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
-    }, 3000);
-    return () => clearInterval(intervalRef.current);
-  };
-  const handleVisibilityChange = () => {
-    if (document.visibilityState !== "visible" && intervalRef.current) {
-      clearInterval(intervalRef.current); // Clear the interval when the tab is not visible
-      intervalRef.current = null;
-    } else if (document.visibilityState === "visible") {
-      startAnimation(); // Restart the interval when the tab becomes visible
-    }
-  };
+  // const intervalRef = useRef(null);
+  // const startAnimation = () => {
+  //   intervalRef.current = setInterval(() => {
+  //     setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
+  //   }, 3000);
+  //   return () => clearInterval(intervalRef.current);
+  // };
+  // const handleVisibilityChange = () => {
+  //   if (document.visibilityState !== "visible" && intervalRef.current) {
+  //     clearInterval(intervalRef.current); // Clear the interval when the tab is not visible
+  //     intervalRef.current = null;
+  //   } else if (document.visibilityState === "visible") {
+  //     startAnimation(); // Restart the interval when the tab becomes visible
+  //   }
+  // };
 
-  useEffect(() => {
-    startAnimation();
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+  // useEffect(() => {
+  //   startAnimation();
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [placeholders]);
+  //   return () => {
+  //     if (intervalRef.current) {
+  //       clearInterval(intervalRef.current);
+  //     }
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  //   };
+  // }, [placeholders]);
 
   const canvasRef = useRef(null);
   const newDataRef = useRef([]);
