@@ -1,7 +1,7 @@
 import { revalidatePath } from "next/cache";
 
 async function AnimeApiCall(UrlString) {
-  const baseURL = process.env.NEXT_MOVIE_BASE_URl;
+  const baseURL = process.env.MOVIE_BASE_URl;
   const response = await fetch(`${baseURL + UrlString}`, { cache: "no-store" });
 
   if (response.ok) {
